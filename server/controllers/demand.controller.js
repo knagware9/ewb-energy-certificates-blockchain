@@ -4,8 +4,8 @@ const Demand = require('../models/demand.model');
 const abstaractController = require('./abstaract.controller');
 
 exports.create = function (req, res) {
-    if (req.body.username && req.body.kwh && req.body.price) {
-        let newDemand = new Demand(req.body.username, req.body.kwh, req.body.price);
+    if (req.body.unipi && req.body.kwh && req.body.price) {
+        let newDemand = new Demand(req.body.unipi, req.body.kwh, req.body.price);
         abstaractController.create(newDemand, res);
     } else {
         return res.send('You must fill all fields!');

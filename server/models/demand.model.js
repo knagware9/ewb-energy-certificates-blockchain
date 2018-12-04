@@ -3,9 +3,9 @@
 const uniqid = require('uniqid');
 
 module.exports = class Demand {
-    constructor(user, kwh, price, hasCertificate = false, id = uniqid()) {
+    constructor(unipi, kwh, price, hasCertificate = false, id = uniqid()) {
         this.id = id;
-        this.user = user;
+        this.unipi = unipi;
         this.kwh = kwh;
         this.price = price;
         this.hasCertificate = hasCertificate;
