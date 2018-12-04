@@ -26,19 +26,23 @@ These instructions are only for MacOSX and Linux (Debian or Ubuntu).
     - user
         - create:                     (post):         localhost:8000/user/create
         - getSingle:                  (get):          localhost:8000/user/<USERNAME>/get
+        - getAll:                     (get):          localhost:8000/user/all
         - update:                     (put):          localhost:8000/user/<USERNAME>/update
         - update selling price:       (put):          localhost:8000/user/<USERNAME>/selling-price/update
     - uni pi
         - create:                     (post):         localhost:8000/unipi/create
         - getSingle:                  (get):          localhost:8000/unipi/<id>/get
+        - getAll:                     (get):          localhost:8000/unipi/all
         - update:                     (put):          localhost:8000/unipi/<id>/update
     - demand
         - create:                     (post):         localhost:8000/demand/create
         - getSingle:                  (get):          localhost:8000/demand/<id>/get
+        - getAll:                     (get):          localhost:8000/demand/all
         - update:                     (put):          localhost:8000/demand/<id>/update
     - certificate
         - create:                     (post):         localhost:8000/certificate/create
         - getSingle:                  (get):          localhost:8000/certificate/<id>/get
+        - getAll:                     (get):          localhost:8000/certificate/all
         - update:                     (put):          localhost:8000/certificate/<id>/update
 - API (Request params):                
     - user
@@ -50,6 +54,8 @@ These instructions are only for MacOSX and Linux (Debian or Ubuntu).
             - sellingPrice
         - getSingle
             - id (get param)
+        - getAll
+            - <>
         - update
             - id (get param)
             - name
@@ -64,6 +70,8 @@ These instructions are only for MacOSX and Linux (Debian or Ubuntu).
             - username
         - getSingle
             - id (get param) 
+        - getAll
+            - <>
         - update
             - id (get param)
             - username
@@ -73,7 +81,9 @@ These instructions are only for MacOSX and Linux (Debian or Ubuntu).
             - kwh
             - price
         - getSingle
-            - id (get param) 
+            - id (get param)
+        - getAll
+            - <> 
         - update
             - id (get param) 
             - hasCertificate (boolean)
@@ -82,7 +92,9 @@ These instructions are only for MacOSX and Linux (Debian or Ubuntu).
             - unipi
             - minimalPrice
         - getSingle
-            - id (get param) 
+            - id (get param)
+        - getAll
+            - <> 
         - update
             - id (get param)
             - demand
