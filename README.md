@@ -39,4 +39,51 @@ These instructions are only for MacOSX and Linux (Debian or Ubuntu).
     - certificate
         - create:                     (post):         localhost:8000/certificate/create
         - getSingle:                  (get):          localhost:8000/certificate/<id>
-        - update:                     (put):          localhost:8000/certificate/<id>/update        
+        - update:                     (put):          localhost:8000/certificate/<id>/update
+- API (Request params):                
+    - user
+        - create
+            - username
+            - name
+            - street
+            - postalCode
+            - sellingPrice
+        - getSingle
+            - id (get param)
+        - update
+            - id (get param)
+            - name
+            - street
+            - postalCode
+            - sellingPrice 
+        - update selling price
+            - id (get param)
+            - sellingPrice
+    - uni pi
+        - create
+            - username
+        - getSingle
+            - id (get param) 
+        - update
+            - id (get param)
+            - username
+    - demand
+        - create
+            - username
+            - kwh
+            - price
+        - getSingle
+            - id (get param) 
+        - update
+            - id (get param) 
+            - hasCertificate (boolean)
+    - certificate
+        - create
+            - unipi
+            - minimalPrice
+        - getSingle
+            - id (get param) 
+        - update
+            - id (get param)
+            - demand
+            - sellingPrice
