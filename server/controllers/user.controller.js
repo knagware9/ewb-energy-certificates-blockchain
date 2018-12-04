@@ -40,6 +40,16 @@ exports.authenticate = function (req, res) {
 
 };
 
+exports.get = function get(req, res) {
+    getUser(req.params.id, function (user) {
+        if (user) {
+            res.send(user);
+        } else {
+            res.send('User not found!');
+        }
+    });
+};
+
 async function getUser(username, callback) {
     abstaractController.query('queryById', [username], function (result) {
         callback(JSON.parse(result));
