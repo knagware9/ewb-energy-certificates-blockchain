@@ -27,7 +27,7 @@ let tx_id = null;
  * @param callback
  * @return {Promise<void>}
  */
-exports.invoke = async function invoke(fcn, args, callback) {
+async function invoke(fcn, args, callback) {
     // create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
     await Fabric_Client.newDefaultKeyValueStore({ path: store_path})
         .then((state_store) => {
@@ -151,7 +151,7 @@ exports.invoke = async function invoke(fcn, args, callback) {
         }).catch((err) => {
             console.error('Failed to invoke successfully :: ' + err);
         });
-};
+}
 
 /**
  *
@@ -160,7 +160,7 @@ exports.invoke = async function invoke(fcn, args, callback) {
  * @param callback
  * @return {Promise<void>}
  */
-exports.query = async function query(fcn, args, callback) {
+async function query(fcn, args, callback) {
     // create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
     await Fabric_Client.newDefaultKeyValueStore({ path: store_path
     }).then((state_store) => {
@@ -201,6 +201,32 @@ exports.query = async function query(fcn, args, callback) {
         console.error('Failed to query successfully :: ' + err);
     });
 
+}
+
+exports.create = function (object, res) {
+    invoke('create', [JSON.stringify(object)], function (result) {
+        if (result === 'VALID') {
+            res.send('Object Created successfully!');
+        } else {
+            res.send('Failed to create Object :: ' + result);
+        }
+    });
+};
+
+exports.update = function (object, res) {
+    invoke('update', [JSON.stringify(object)], function (result) {
+        if (result === 'VALID') {
+            res.send('Object updated successfully!');
+        } else {
+            res.send('Failed to update Object :: ' + result);
+        }
+    });
+};
+
+exports.getById = function (id, callback) {
+    query('queryById', [id], function (result) {
+        callback(JSON.parse(result));
+    });
 };
 
 function getAdmin(state_store) {
