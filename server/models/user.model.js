@@ -40,4 +40,4 @@ module.exports = class User {
     get sellPrice() {
         return this._sellingPrice;
     }
-}
+};

@@ -1,6 +1,6 @@
 "use strict";
 
-const SmartMeter = require('../models/smartMeter.model');
+const Unipi = require('../models/unipi.model');
 
 exports.create = function (req, res) {
 

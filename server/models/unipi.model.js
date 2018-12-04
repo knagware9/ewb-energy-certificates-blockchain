@@ -2,7 +2,7 @@
 
 const uniqid = require('uniqid');
 
-module.exports = class SmartMeter {
+module.exports = class UnipiModel {
     constructor(user) {
         this._id = uniqid();
         this._user = user;
@@ -18,4 +18,4 @@ module.exports = class SmartMeter {
     get id() {
         return this._id;
     }
-}
+};

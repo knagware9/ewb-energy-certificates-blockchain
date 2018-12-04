@@ -34,4 +34,4 @@ module.exports = class Demand {
     get id() {
         return this._id;
     }
-}
+};

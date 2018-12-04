@@ -3,20 +3,20 @@
 const uniqid = require('uniqid');
 
 module.exports = class Certificate {
-    constructor(smartMeter, kwh, minimalPrice) {
+    constructor(unipi, kwh, minimalPrice) {
         this._id = uniqid();
-        this._smartMeter = smartMeter;
+        this._unipi = unipi;
         this._kwh = kwh;
         this._minimalPrice = minimalPrice;
         this._demand = '';
     }
 
-    get smartMeter() {
-        return this._smartMeter;
+    get unipi() {
+        return this._unipi;
     }
 
-    set smartMeter(smartMeter) {
-        this._smartMeter = smartMeter;
+    set unipi(unipi) {
+        this._unipi = unipi;
     }
 
     get kwh() {
@@ -46,4 +46,4 @@ module.exports = class Certificate {
     get id() {
         return this._id;
     }
-}
+};

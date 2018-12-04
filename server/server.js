@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const user = require('./routes/user.route');
 const certificate = require('./routes/certificate.route');
 const demand = require('./routes/demand.route');
-const smartMeter = require('./routes/smartMeter.route');
+const unipi = require('./routes/unipi.route');
 const app = express();
 
 // body parser
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use('/user', user);
 app.use('/certificate', certificate);
 app.use('/demand', demand);
-app.use('/smart-meter', smartMeter);
+app.use('/unipi', unipi);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
