@@ -79,6 +79,41 @@ let Chaincode = class {
         console.info('============= END : Query Asset by id ===========');
         return productAsBytes;
     }
+
+    async getQueryResultForQueryString(stub, args) {
+        console.info('============= START : Query All by Type ===========');
+        if (args.length !== 1) {
+            throw new Error('Incorrect number of arguments.');
+        }
+
+        let resultsIterator = await stub.getQueryResult(args[0]);
+
+        let allResults = [];
+        while (true) {
+            let res = await resultsIterator.next();
+
+            if (res.value && res.value.value.toString()) {
+                let jsonRes = {};
+                console.log(res.value.value.toString('utf8'));
+
+                jsonRes.Key = res.value.key;
+                try {
+                    jsonRes.Record = JSON.parse(res.value.value.toString('utf8'));
+                } catch (err) {
+                    console.log(err);
+                    jsonRes.Record = res.value.value.toString('utf8');
+                }
+                allResults.push(jsonRes.Record);
+            }
+            if (res.done) {
+                console.log('end of data');
+                await resultsIterator.close();
+                console.info(allResults);
+                console.info('============= END : Query Asset by id ===========');
+                return Buffer.from(JSON.stringify(allResults));
+            }
+        }
+    }
 };
 
 shim.start(new Chaincode());

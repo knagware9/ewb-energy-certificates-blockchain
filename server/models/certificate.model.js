@@ -9,5 +9,6 @@ module.exports = class Certificate {
         this.minimalPrice = minimalPrice;
         this.demand = demand;
         this.sellingPrice = sellingPrice;
+        this.type = 'CERTIFICATE';
     }
 };

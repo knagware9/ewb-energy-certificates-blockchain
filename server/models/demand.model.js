@@ -9,5 +9,6 @@ module.exports = class Demand {
         this.kwh = kwh;
         this.price = price;
         this.hasCertificate = hasCertificate;
+        this.type = 'DEMAND';
     }
 };

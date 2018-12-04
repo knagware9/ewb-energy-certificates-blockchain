@@ -6,7 +6,8 @@ const router = express.Router();
 // require the controller
 const demandController = require('../controllers/demand.controller');
 
-router.get('/:id', demandController.get);
+router.get('/:id/get', demandController.get);
+router.get('/all', demandController.getAllBy);
 router.post('/create', demandController.create);
 router.put('/:id/update', demandController.update);
 
