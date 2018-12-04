@@ -20,3 +20,23 @@ These instructions are only for MacOSX and Linux (Debian or Ubuntu).
 
 ### Down the application
 - $ ./destroy.sh
+
+
+- API:
+    - user
+        - create:                     (post):         localhost:8000/user/create
+        - getSingle:                  (get):          localhost:8000/user/<USERNAME>
+        - update:                     (put):          localhost:8000/user/<USERNAME>/update
+        - update selling price:       (put):          localhost:8000/user/<USERNAME>/selling-price/update
+    - uni pi
+        - create:                     (post):         localhost:8000/unipi/create
+        - getSingle:                  (get):          localhost:8000/unipi/<id>
+        - update:                     (put):          localhost:8000/unipi/<id>/update
+    - demand
+        - create:                     (post):         localhost:8000/demand/create
+        - getSingle:                  (get):          localhost:8000/demand/<id>
+        - update:                     (put):          localhost:8000/demand/<id>/update
+    - certificate
+        - create:                     (post):         localhost:8000/certificate/create
+        - getSingle:                  (get):          localhost:8000/certificate/<id>
+        - update:                     (put):          localhost:8000/certificate/<id>/update        
