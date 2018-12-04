@@ -32,7 +32,7 @@ app.use(function (err, req, res, next) {
     res.send(err.message);
 });
 
-let port = 8080;
+let port = 8000;
 
 // server: start and listen
 app.listen(port, () => {

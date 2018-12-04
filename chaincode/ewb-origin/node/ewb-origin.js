@@ -48,23 +48,36 @@ let Chaincode = class {
         if (args.length < 1) {
             throw new Error('Incorrect number of arguments.');
         }
-        await stub.putState('ASSET-' + args[0].id, Buffer.from(JSON.stringify(args[0])));
+        let asset = JSON.parse(args[0]);
+        await stub.putState(asset.id, Buffer.from(args[0]));
         console.info('============= END : Create Asset ===========');
     }
 
     async update(stub, args) {
-        console.info('============= START : changeProductOwner ===========');
+        console.info('============= START : Update Asset ===========');
         if (args.length < 1) {
             throw new Error('Incorrect number of arguments.');
         }
-        let assetId = 'ASSET-' + args[0];
 
-        let assetAsBytes = await stub.getState(assetId);
+        let assetAsBytes = await stub.getState(JSON.parse(args[0]).id);
         let asset = JSON.parse(assetAsBytes);
-        asset = args[0];
 
-        await stub.putState(assetAsBytes, Buffer.from(JSON.stringify(asset)));
-        console.info('============= END : changeProductOwner ===========');
+        await stub.putState(asset.id, Buffer.from(args[0]));
+        console.info('============= END : Update Asset ===========');
+    }
+
+    async queryById(stub, args) {
+        console.info('============= START : Query Asset by id ===========');
+        if (args.length !== 1) {
+            throw new Error('Incorrect number of arguments.');
+        }
+
+        let productAsBytes = await stub.getState(args[0]); //get the asset from chaincode state
+        if (!productAsBytes || productAsBytes.toString().length <= 0) {
+            throw new Error(args[0] + ' does not exist: ');
+        }
+        console.info('============= END : Query Asset by id ===========');
+        return productAsBytes;
     }
 };
 
