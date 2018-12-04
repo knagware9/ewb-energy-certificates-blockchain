@@ -11,5 +11,6 @@ router.get('/all', userController.getAllBy);
 router.post('/create', userController.create);
 router.put('/:id/update', userController.update);
 router.put('/:id/selling-price/update', userController.updateSellingPrice);
+router.put('/:id/buying-price/update', userController.updateBuyingPrice);
 
 module.exports = router;

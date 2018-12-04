@@ -36,6 +36,18 @@ exports.updateSellingPrice = function (req, res) {
     }
 };
 
+exports.updateBuyingPrice = function (req, res) {
+    if (req.body.buyingPrice) {
+        abstaractController.getById(req.params.id, function (userToUpdate) {
+            let newUser = new User(userToUpdate.id, userToUpdate.name, userToUpdate.street, userToUpdate.postalCode, req.body.sellingPrice, req.body.buyingPrice);
+            abstaractController.update(newUser, res);
+        });
+
+    } else {
+        return res.send('You must fill all fields!');
+    }
+};
+
 exports.get = function (req, res) {
     abstaractController.getById(req.params.id, function (user) {
         if (user) {
