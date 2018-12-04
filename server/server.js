@@ -10,6 +10,11 @@ const demand = require('./routes/demand.route');
 const unipi = require('./routes/unipi.route');
 const app = express();
 
+const cors = require('cors');
+
+// use it before all route definitions
+app.use(cors({origin: 'http://localhost:8081'}));
+
 // body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
