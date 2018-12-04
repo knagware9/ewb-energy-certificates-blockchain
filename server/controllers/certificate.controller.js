@@ -4,9 +4,11 @@ const Certificate = require('../models/certificate.model');
 const abstaractController = require('./abstaract.controller');
 
 exports.create = function (req, res) {
-    if (req.body.unipi && req.body.kwh && req.body.minimalPrice) {
-        let newCertificate = new Certificate(req.body.unipi, req.body.kwh, req.body.minimalPrice);
-        abstaractController.create(newCertificate, res);
+    if (req.body.unipi && req.body.minimalPrice && req.body.kwhs) {
+        for(var i = 0; i < req.body.kwhs; i++) {
+            let newCertificate = new Certificate(req.body.unipi, req.body.minimalPrice);
+            abstaractController.create(newCertificate, res);
+        }
     } else {
         return res.send('You must fill all fields!');
     }

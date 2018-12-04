@@ -4,8 +4,8 @@ const Unipi = require('../models/unipi.model');
 const abstaractController = require('./abstaract.controller');
 
 exports.create = function (req, res) {
-    if (req.body.username) {
-        let newUnipi = new Unipi(req.body.username);
+    if (req.body.username && req.body.name && req.body.id) {
+        let newUnipi = new Unipi(req.body.username, req.body.name, req.body.id);
         abstaractController.create(newUnipi, res);
     } else {
         return res.send('You must fill all fields!');
