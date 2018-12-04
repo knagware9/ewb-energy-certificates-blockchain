@@ -26,7 +26,23 @@ exports.update = function (req, res) {
     }
 };
 
-exports.get = function get(req, res) {
+exports.getAllBy = function (req, res) {
+    let queryString = JSON.stringify({
+        'selector': {
+            'type': 'CERTIFICATE'
+        }
+    });
+
+    abstaractController.getByQueryString(queryString, function (users) {
+        if (users) {
+            res.send(users);
+        } else {
+            res.send('No users not found!');
+        }
+    });
+};
+
+exports.get = function (req, res) {
     abstaractController.getById(req.params.id, function (certificate) {
         if (certificate) {
             res.send(certificate);

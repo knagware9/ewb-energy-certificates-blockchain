@@ -7,5 +7,6 @@ module.exports = class User {
         this.street = street;
         this.postalCode = postalCode;
         this.sellingPrice = sellingPrice;
+        this.type = 'USER';
     }
 };

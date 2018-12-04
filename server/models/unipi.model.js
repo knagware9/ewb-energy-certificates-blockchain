@@ -6,6 +6,7 @@ module.exports = class UnipiModel {
     constructor(user, name, id = uniqid()) {
         this.id = id;
         this.user = user;
-        this.name = name
+        this.name = name;
+        this.type = 'UNIPI';
     }
 };

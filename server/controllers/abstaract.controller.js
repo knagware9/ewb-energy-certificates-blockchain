@@ -229,6 +229,12 @@ exports.getById = function (id, callback) {
     });
 };
 
+exports.getByQueryString = function (queryString, callback) {
+    query('getQueryResultForQueryString', [queryString], function (result) {
+        callback(JSON.parse(result));
+    });
+};
+
 function getAdmin(state_store) {
     // assign the store to the fabric client
     fabric_client.setStateStore(state_store);

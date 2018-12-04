@@ -36,7 +36,7 @@ exports.updateSellingPrice = function (req, res) {
     }
 };
 
-exports.get = function get(req, res) {
+exports.get = function (req, res) {
     abstaractController.getById(req.params.id, function (user) {
         if (user) {
             res.send(user);
@@ -45,6 +45,23 @@ exports.get = function get(req, res) {
         }
     });
 };
+
+exports.getAllBy = function (req, res) {
+    let queryString = JSON.stringify({
+        'selector': {
+            'type': 'USER'
+        }
+    });
+
+    abstaractController.getByQueryString(queryString, function (users) {
+        if (users) {
+            res.send(users);
+        } else {
+            res.send('No users not found!');
+        }
+    });
+};
+
 
 exports.authenticate = function (req, res) {
 

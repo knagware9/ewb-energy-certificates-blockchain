@@ -24,7 +24,23 @@ exports.update = function (req, res) {
     }
 };
 
-exports.get = function get(req, res) {
+exports.getAllBy = function (req, res) {
+    let queryString = JSON.stringify({
+        'selector': {
+            'type': 'UNIPI'
+        }
+    });
+
+    abstaractController.getByQueryString(queryString, function (users) {
+        if (users) {
+            res.send(users);
+        } else {
+            res.send('No users not found!');
+        }
+    });
+};
+
+exports.get = function (req, res) {
     abstaractController.getById(req.params.id, function (unipi) {
         if (unipi) {
             res.send(unipi);
