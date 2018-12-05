@@ -48,8 +48,8 @@ exports.get = function (req, res) {
 
 exports.getAllBy = function (req, res) {
     let queryString = JSON.stringify({
-        'selector': {
-            'type': 'USER'
+        selector: {
+            type: 'USER'
         }
     });
 

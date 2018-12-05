@@ -26,8 +26,8 @@ exports.update = function (req, res) {
 
 exports.getAllBy = function (req, res) {
     let queryString = JSON.stringify({
-        'selector': {
-            'type': 'DEMAND'
+        selector: {
+            type: 'DEMAND'
         }
     });
 

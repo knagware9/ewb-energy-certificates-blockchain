@@ -206,12 +206,52 @@ async function query(fcn, args, callback) {
 exports.create = function (object, res) {
     invoke('create', [JSON.stringify(object)], function (result) {
         if (result === 'VALID') {
+            if (object.type === 'DEMAND') {
+                buyCertificates(object);
+            }
             res.send('Object Created successfully!');
         } else {
             res.send('Failed to create Object :: ' + result);
         }
     });
 };
+
+function buyCertificates(demand) {
+    let queryString = JSON.stringify({
+        selector: {
+            type: 'CERTIFICATE',
+            demand: '',
+            minimalPrice: {
+                $lte: demand.price
+            }
+        },
+        limit: 1
+    });
+    let maxCerts = demand.kwh;
+    for (let i = 0; i < maxCerts; i++) {
+        //let certificate = findUnsoldCertificateWithPrice <= demand.price('order by price desc');
+        query('getQueryResultForQueryString', [queryString], function (result) {
+            let certificate = JSON.parse(result)[0];
+            if (certificate) {
+                certificate.demand = demand.id;
+                invoke('update', [JSON.stringify(certificate)], function (result) {
+                    if (result === 'VALID') {
+                        demand.kwh--;
+                        invoke('update', [JSON.stringify(demand)], function (result) {
+                            if (result === 'VALID') {
+                                res.send('---- Object updated successfully!');
+                            } else {
+                                res.send('---- Failed to update Object :: ' + result);
+                            }
+                        });
+                    }
+                });
+                // transferFundsViaApi(demand.user, c.unipi.user, c.minimalPrice)
+            }
+        });
+    }
+
+}
 
 exports.update = function (object, res) {
     invoke('update', [JSON.stringify(object)], function (result) {
