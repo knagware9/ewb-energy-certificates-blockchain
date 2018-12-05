@@ -10,5 +10,6 @@ router.get('/:id/get', unipiController.get);
 router.get('/all', unipiController.getAllBy);
 router.post('/create', unipiController.create);
 router.put('/:id/update', unipiController.update);
+router.get('/getAllByUser/:userId', unipiController.getAllByUser);
 
 module.exports = router;

@@ -40,6 +40,23 @@ exports.getAllBy = function (req, res) {
     });
 };
 
+exports.getAllByUser = function (req, res) {
+    let queryString = JSON.stringify({
+        'selector': {
+            'type': 'UNIPI',
+            'user': req.params.userId
+        }
+    });
+
+    abstaractController.getByQueryString(queryString, function (users) {
+        if (users) {
+            res.send(users);
+        } else {
+            res.send('No users not found!');
+        }
+    });
+};
+
 exports.get = function (req, res) {
     abstaractController.getById(req.params.id, function (unipi) {
         if (unipi) {
