@@ -59,6 +59,23 @@ exports.getAllByUniPi = function (req, res) {
     });
 };
 
+exports.getAllByDemand = function (req, res) {
+    let queryString = JSON.stringify({
+        'selector': {
+            'type': 'CERTIFICATE',
+            'demand': req.params.demandId
+        }
+    });
+
+    abstaractController.getByQueryString(queryString, function (certificates) {
+        if (certificates) {
+            res.send(certificates);
+        } else {
+            res.send('No users not found!');
+        }
+    });
+};
+
 exports.get = function (req, res) {
     abstaractController.getById(req.params.id, function (certificate) {
         if (certificate) {

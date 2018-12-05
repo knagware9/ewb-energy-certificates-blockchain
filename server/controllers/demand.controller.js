@@ -49,3 +49,20 @@ exports.get = function (req, res) {
         }
     });
 };
+
+exports.getAllByUniPi = function (req, res) {
+    let queryString = JSON.stringify({
+        'selector': {
+            'type': 'DEMAND',
+            'unipi': req.params.uniPiId
+        }
+    });
+
+    abstaractController.getByQueryString(queryString, function (demands) {
+        if (demands) {
+            res.send(demands);
+        } else {
+            res.send('No users not found!');
+        }
+    });
+};

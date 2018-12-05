@@ -11,5 +11,6 @@ router.get('/all', certificateController.getAllBy);
 router.post('/create', certificateController.create);
 router.put('/:id/update', certificateController.update);
 router.get('/getAllByUniPi/:uniPiId', certificateController.getAllByUniPi);
+router.get('/getAllByDemand/:demandId', certificateController.getAllByDemand);
 
 module.exports = router;
