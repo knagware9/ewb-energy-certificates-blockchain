@@ -274,7 +274,7 @@ function sellCertificate(certificate) {
     query('getQueryResultForQueryString', [queryString], function (result) {
         let demand = JSON.parse(result)[0];
         if (demand) {
-            certificate.minimalPrice = demand.price;
+            certificate.sellingPrice = demand.price;
             certificate.demand = demand.id;
             invoke('update', [JSON.stringify(certificate)], function (result) {
                 if (result === 'VALID') {
