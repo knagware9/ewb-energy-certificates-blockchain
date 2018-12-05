@@ -209,6 +209,10 @@ exports.create = function (object, res) {
             if (object.type === 'DEMAND') {
                 buyCertificates(object);
             }
+
+            if (object.type === 'CERTIFICATE') {
+                sellCertificate(object)
+            }
             res.send('Object Created successfully!');
         } else {
             res.send('Failed to create Object :: ' + result);
@@ -250,6 +254,43 @@ function buyCertificates(demand) {
             }
         });
     }
+
+}
+
+function sellCertificate(certificate) {
+    let queryString = JSON.stringify({
+        selector: {
+            type: 'DEMAND',
+            price: {
+                $gte: certificate.minimalPrice
+            },
+            kwh: {
+                $gt: 0
+            }
+        },
+        limit: 1
+    });
+
+    query('getQueryResultForQueryString', [queryString], function (result) {
+        let demand = JSON.parse(result)[0];
+        if (demand) {
+            certificate.minimalPrice = demand.price;
+            certificate.demand = demand.id;
+            invoke('update', [JSON.stringify(certificate)], function (result) {
+                if (result === 'VALID') {
+                    demand.kwh--;
+                    invoke('update', [JSON.stringify(demand)], function (result) {
+                        if (result === 'VALID') {
+                            res.send('---- Object updated successfully!');
+                        } else {
+                            res.send('---- Failed to update Object :: ' + result);
+                        }
+                    });
+                }
+            });
+        }
+    });
+
 
 }
 
